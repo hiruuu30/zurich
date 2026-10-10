@@ -37,6 +37,7 @@ export async function mountViewer(app,slug){
   function activateScene(index){
     const scene=scenes[index];
     if(!scene){viewer.cameraOrbit='auto auto auto';viewer.cameraTarget='auto auto auto';viewer.fieldOfView='auto';return;}
+    if(scene.available===false)return;
     currentScene=index;
     viewer.cameraTarget=scene.cameraTarget;
     viewer.cameraOrbit=scene.cameraOrbit;
@@ -46,7 +47,10 @@ export async function mountViewer(app,slug){
   scenes.forEach((scene,index)=>{
     const button=document.createElement('button');
     button.type='button';button.className='scene-button';button.textContent=String(index+1).padStart(2,'0');
-    button.title=scene.name;button.setAttribute('aria-label',scene.name);button.setAttribute('aria-pressed',String(index===0));
+    button.title=scene.available===false ? scene.name+' — currently unavailable' : scene.name;
+    button.disabled=scene.available===false;
+    button.setAttribute('aria-label',scene.available===false ? scene.name+' unavailable in this model export' : scene.name);
+    button.setAttribute('aria-pressed',String(index===0));
     button.addEventListener('click',()=>activateScene(index));
     toolbar.querySelector('#scene-list').append(button);
   });

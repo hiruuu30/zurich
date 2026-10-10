@@ -18,3 +18,5 @@
 @media(max-width:860px){.viewer-page .viewer-toolbar{align-items:stretch;flex-direction:column;gap:9px}.viewer-page .scene-group{justify-content:space-between}.viewer-page .scene-list{justify-content:flex-end}.viewer-page .viewer-actions{justify-content:flex-end}}
 @media(max-width:520px){.viewer-page .showcase-body{padding:23px 14px 16px}.viewer-page .viewer-shell{min-height:55svh}.viewer-page .scene-group{gap:7px}.viewer-page .scene-list{gap:3px}.viewer-page .scene-button{min-width:30px;height:34px}.viewer-page .viewer-actions button{padding:8px 10px;font-size:10px}}
 @media(prefers-reduced-motion:reduce){.viewer-page .scene-button,.viewer-page .viewer-actions button{transition:none}}
+
+.viewer-page .scene-button:disabled{opacity:.34;cursor:not-allowed;border-color:transparent;text-decoration:line-through;text-decoration-color:#a99b8e;text-decoration-thickness:1px}.viewer-page .scene-button:disabled:hover{background:transparent;color:#88817b;border-color:transparent}
