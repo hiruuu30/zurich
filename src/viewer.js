@@ -1,6 +1,7 @@
 import '@google/model-viewer';
 import sceneConfigs from './project-scenes.json';
 import { tunePbrMaterials } from './materials.js';
+import { installReviewTools } from './review-tools.js';
 const projectNames={'dr-neil':'Dr. Neil'};
 const friendlyName=s=>projectNames[s]||s.split('-').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
 export async function mountViewer(app,slug){
@@ -66,4 +67,5 @@ export async function mountViewer(app,slug){
   viewer.addEventListener('error',()=>{viewer.remove();toolbar.remove();status.innerHTML='<strong>Could not open this 3D presentation.</strong><span>Please try again later.</span>';status.classList.add('empty-state');});
   document.getElementById('reset-view').addEventListener('click',()=>activateScene(currentScene));
   document.getElementById('fullscreen-view').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if(shell.requestFullscreen)await shell.requestFullscreen();}catch{}});
+  installReviewTools({viewer,shell,toolbar,scenes,activateScene,title,slug});
 }
